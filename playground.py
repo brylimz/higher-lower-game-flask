@@ -4,9 +4,28 @@ from flask import Flask
 app = Flask(__name__)
 
 
+
 @app.route("/")
-def home():
-    return "hello"
+def hello_world():
+    return '<h1 style="text-align:center"> Hello World </h1>' \
+           '<p> This is a paragraph </p>' \
+           '<img src="https://c.tenor.com/ZhfMGWrmCTcAAAAM/cute-kitty-best-kitty.gif" </img>' \
+           ''
+
+# creating vairable paths and converting the path to a specified data type
+
+
+def make_bold(function):
+    def wrapper_function():
+        print("ehehe")
+    return wrapper_function
+
+
+#different routes using the app.route decorator
+@make_bold
+@app.route("/bye")
+def bye():
+    return "bye"
 
 
 @app.route("/username/<name>/<int:number>")
