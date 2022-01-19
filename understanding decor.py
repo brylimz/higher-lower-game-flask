@@ -49,3 +49,21 @@ print(gettalk("whisper")())
 # handcrafted decorators
 
 
+def my_shiny_new_decorator(a_function_to_decorate):
+    def the_wrapper_around_the_original_function():
+        print("before the function runs")
+
+        a_function_to_decorate()
+
+        print("after the function runs")
+
+    return the_wrapper_around_the_original_function
+
+
+def a_stand_alone_function():
+    print("I am stand alone function, don't you dare modify me")
+
+
+a_stand_alone_function()
+a_stand_alone_function_decorated = my_shiny_new_decorator(a_stand_alone_function)
+a_stand_alone_function_decorated()
