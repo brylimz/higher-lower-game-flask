@@ -1,4 +1,5 @@
 from flask import Flask
+from functools import wraps
 # set FLASK_APP = playground.py
 # $env:FLASK_APP = "playground.py"
 app = Flask(__name__)
@@ -15,17 +16,20 @@ def hello_world():
 # creating vairable paths and converting the path to a specified data type
 
 
-def make_bold(function):
-    def wrapper_function():
-        print("ehehe")
-    return wrapper_function
-
+def makebold(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        return "<h1>" + fn(*args, **kwargs) + "</h1>"
+    return wrapper
 
 #different routes using the app.route decorator
-@make_bold
+
+
+@makebold
 @app.route("/bye")
 def bye():
     return "bye"
+
 
 
 @app.route("/username/<name>/<int:number>")
